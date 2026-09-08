@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>M1A1 Abrams — Garage 04</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#111719;color:#ebe9df;font-family:Arial,Helvetica,sans-serif}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid #e4b562;outline-offset:4px}#scene{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:grab}#scene:active{cursor:grabbing}.shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(8,12,14,.6),transparent 27%,transparent 74%,rgba(8,12,14,.78))}.ui{transition:opacity .3s}.hidden-ui .ui{opacity:0;pointer-events:none}.top{position:absolute;top:35px;left:40px;right:40px;display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none}.eyebrow{font-size:10px;font-weight:600;letter-spacing:3.6px;color:#c1c4bf;text-transform:uppercase}.eyebrow span{color:#d4aa64;margin-right:15px}h1{font-weight:400;letter-spacing:-1.7px;font-size:clamp(28px,3.5vw,49px);margin:10px 0 8px;line-height:1}h1 strong{font-weight:600}.sub{color:#a9b2af;font-size:11px;letter-spacing:1.4px}.top-actions{display:flex;gap:10px;pointer-events:auto}.icon-btn{width:42px;height:42px;color:#dedfd7;background:rgba(19,26,28,.55);border:1px solid #8a969330;border-radius:3px;display:grid;place-items:center;backdrop-filter:blur(12px)}.icon-btn:hover,.icon-btn.active{background:#343b3b;color:#f1c481;border-color:#b7aa8655}.icon-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round}.bottom{position:absolute;bottom:28px;left:40px;right:40px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;pointer-events:none}.view-strip{display:flex;gap:0;border:1px solid #96a19a33;backdrop-filter:blur(18px);background:#101a1dd6;border-radius:4px;overflow:hidden;pointer-events:auto}.view-strip button{font-size:11px;padding:15px 20px;border:0;color:#abb5b4;background:transparent;letter-spacing:.35px;white-space:nowrap}.view-strip button:hover{background:#8c9b8f1a;color:#f2eee4}.view-strip button.active{color:#efcf9d;background:#d4b27a13;box-shadow:inset 0 -2px #cba365}.hint{font-size:10px;color:#acb3b0;margin-top:12px;letter-spacing:.45px}.hint b{font-weight:400;color:#e0e0d6}.corner{text-align:right;font-size:10px;letter-spacing:1.4px;color:#a7b1ae;line-height:1.7}.corner .bay{font-size:13px;letter-spacing:3px;color:#e1dfd4}.live-dot{display:inline-block;width:5px;height:5px;background:#b1ba91;border-radius:50%;margin-right:8px}.panel{position:absolute;right:40px;top:92px;width:264px;background:#151e20ed;border:1px solid #96a19a33;backdrop-filter:blur(22px);padding:21px;border-radius:5px;box-shadow:0 12px 45px #0006;display:none}.panel.open{display:block}.panel-title{font-size:10px;letter-spacing:2.2px;color:#e7cfaa;margin:0 0 22px}.field{margin-top:20px}.field label{display:flex;justify-content:space-between;font-size:11px;color:#b6bfbb;margin-bottom:11px}.field output{color:#e8e6d9;font-variant-numeric:tabular-nums}.field select{width:100%;background:#273034;border:1px solid #8c9b8733;border-radius:3px;color:#e0e5dc;font-size:12px;padding:9px}.field input[type=range]{width:100%;accent-color:#c8a671;height:3px;cursor:pointer}.panel-footer{margin-top:23px;padding-top:17px;border-top:1px solid #89958f26;color:#919e9a;font-size:10px;line-height:1.7}.panel-footer kbd{font-family:inherit;color:#e0dece}.loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#111719;z-index:10;transition:opacity .7s}.loading.out{opacity:0;pointer-events:none}.load-inner{width:230px}.load-title{font-size:12px;letter-spacing:4px;margin-bottom:16px}.load-track{height:1px;background:#46504e}.load-bar{height:1px;width:8%;background:#cfa96c;transition:width .25s}.load-caption{font-size:10px;color:#95a39e;margin-top:12px;letter-spacing:.4px}.error{max-width:460px;margin:30px;line-height:1.65;font-size:14px}.toast{position:absolute;left:50%;bottom:120px;transform:translateX(-50%);padding:10px 16px;border-radius:4px;border:1px solid #a2ad9430;background:#162023e8;font-size:12px;opacity:0;transition:opacity .25s;pointer-events:none}.toast.show{opacity:1}#restore{position:absolute;bottom:15px;right:15px;display:none;font-size:11px;background:#1b2629bb;border:1px solid #89998e44;color:#cbd2c9;padding:9px 12px;border-radius:3px}.hidden-ui #restore{display:block}.help-note{position:absolute;left:40px;top:150px;font-size:11px;color:#a7b0ad;max-width:260px;background:#172124e8;border:1px solid #7b8a8633;padding:16px;line-height:1.8;border-radius:4px;display:none}.help-note.open{display:block}
+@media(max-width:640px){.top{left:20px;right:20px;top:24px}.eyebrow{font-size:8px;letter-spacing:2px}.eyebrow span{margin-right:9px}h1{font-size:clamp(23px,6.5vw,29px);letter-spacing:-.9px}.sub{font-size:9px;letter-spacing:.9px}.top-actions{gap:7px}.top-actions #fullscreen{display:none}.icon-btn{width:36px;height:36px}.bottom{left:20px;right:20px;bottom:23px;display:block}.view-strip{width:max-content;max-width:100%}.view-strip button{padding:13px 15px;font-size:10px}.hint{font-size:9px;line-height:1.6;margin-top:9px}.corner{display:none}.panel{right:20px;top:78px;width:245px}.help-note{left:20px;top:135px}.toast{bottom:125px;white-space:nowrap;font-size:11px}}
+</style>
+</head>
+<body>
+<canvas id="scene" aria-label="Interactive three-dimensional M1A1 Abrams tank inside a maintenance garage. Drag to orbit, scroll to zoom, or use the camera buttons." role="img"></canvas>
+<div class="shade ui"></div>
+<header class="top ui"><div><div class="eyebrow"><span>01 /</span> Armor study</div><h1><strong>M1A1</strong> ABRAMS</h1><div class="sub">DESERT FINISH &nbsp; / &nbsp; MAINTENANCE BAY 04</div></div><div class="top-actions">
+<button class="icon-btn" id="rotate" title="Turntable (Space)" aria-label="Toggle automatic camera orbit" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M20 10a8 8 0 1 0-2 8M20 4v6h-6"/></svg></button>
+<button class="icon-btn" id="settings" title="Scene controls" aria-label="Open scene controls" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 6h6m4 0h6M4 12h2m4 0h10M4 18h10m4 0h2"/><circle cx="12" cy="6" r="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="18" r="2"/></svg></button>
+<button class="icon-btn" id="fullscreen" title="Fullscreen (F)" aria-label="Toggle fullscreen"><svg viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg></button>
+</div></header>
+<section class="panel ui" id="panel" aria-label="Scene controls"><p class="panel-title">SCENE CONTROLS</p><div class="field"><label for="light">Lighting</label><select id="light"><option value="workshop">Workshop daylight</option><option value="cinematic">After hours</option><option value="inspection">Bright inspection</option></select></div><div class="field"><label for="turret">Turret rotation <output id="turret-value">0°</output></label><input id="turret" type="range" min="-180" max="180" step="1" value="0"></div><div class="field"><label for="exposure">Exposure <output id="exposure-value">1.00</output></label><input id="exposure" type="range" min="0.5" max="1.8" step="0.05" value="1"></div><div class="field"><label for="quality">Render quality</label><select id="quality"><option value="high">High</option><option value="ultra">Ultra</option><option value="balanced">Balanced</option></select></div><div class="panel-footer"><kbd>Drag</kbd> orbit · <kbd>Scroll / pinch</kbd> zoom<br><kbd>Shift + drag / two fingers</kbd> pan<br><kbd>R</kbd> reset · <kbd>H</kbd> hide interface<br>All geometry and materials are embedded.<br>Artist-built exterior interpretation.</div></section>
+<footer class="bottom ui"><div><nav class="view-strip" aria-label="Camera views"><button class="active" data-view="hero">Overview</button><button data-view="front">Front</button><button data-view="rear">Rear</button><button data-view="detail">Detail</button></nav><div class="hint"><b>Drag</b> to explore &nbsp; · &nbsp; <b>Scroll / pinch</b> to zoom &nbsp; · &nbsp; <b>Shift + drag</b> to pan</div></div><div class="corner"><div class="bay">GARAGE / 04</div><span class="live-dot"></span>REAL-TIME 3D</div></footer>
+<button id="restore">Show controls</button><div class="toast" role="status" aria-live="polite" id="toast"></div>
+<div class="loading" id="loading"><div class="load-inner"><div class="load-title">M1A1 / ABRAMS</div><div class="load-track"><div class="load-bar" id="load-bar"></div></div><div class="load-caption" id="load-caption">Building the garage…</div></div></div>
+<noscript><style>#loading{display:none}</style><div class="error">Enable JavaScript to view the interactive 3D model.</div></noscript>
+<!-- Original procedural exterior model. No remote dependencies, model downloads, fonts, or texture files.
+Visual references: https://www.army.mil/article/43747/tanks_delivered_to_iraqi_army
+https://www.army.mil/article/18836/iraqi_army_soldiers_prepare_to_field_m1a1_main_battle_tank
+This is an artistic exterior reconstruction, not a dimensionally certified engineering model. -->
+<script>
+'use strict';
+(async function(){
+const $=id=>document.getElementById(id),canvas=$('scene');
+const fail=e=>{$('loading').innerHTML='<div class="error"><b>The 3D scene could not start.</b><br>This file needs a browser with WebGL 2 and hardware acceleration. Open it in a current Chrome, Edge, Firefox, or Safari browser.<br><small id="error-detail"></small></div>';$('error-detail').textContent=String(e.message||e);console.error(e)};
+try{
+const gl=canvas.getContext('webgl2',{antialias:false,alpha:false,powerPreference:'high-performance',preserveDrawingBuffer:false});if(!gl)throw Error('WebGL 2 is unavailable.');
+const tick=()=>new Promise(r=>setTimeout(r,15));
+const progress=async(v,t)=>{$('load-bar').style.width=v+'%';$('load-caption').textContent=t;await tick()};
+const PI=Math.PI,TAU=PI*2;
+const add=(a,b)=>a.map((v,i)=>v+b[i]),sub=(a,b)=>a.map((v,i)=>v-b[i]),scale=(a,s)=>a.map(v=>v*s),dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2],cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]],len=a=>Math.hypot(...a),norm=a=>scale(a,1/(len(a)||1));
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x)),mix=(a,b,t)=>a+(b-a)*t;
+let seed=72341;const rnd=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296};
+const I=()=>new Float32Array([1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]);
+function mul(a,b){let o=new Float32Array(16);for(let c=0;c<4;c++)for(let r=0;r<4;r++)o[c*4+r]=a[r]*b[c*4]+a[4+r]*b[c*4+1]+a[8+r]*b[c*4+2]+a[12+r]*b[c*4+3];return o}
+function perspective(fov,aspect,near,far){let f=1/Math.tan(fov/2),o=new Float32Array(16);o[0]=f/aspect;o[5]=f;o[10]=(far+near)/(near-far);o[11]=-1;o[14]=2*far*near/(near-far);return o}
+function ortho(l,r,b,t,n,f){return new Float32Array([2/(r-l),0,0,0,0,2/(t-b),0,0,0,0,-2/(f-n),0,-(r+l)/(r-l),-(t+b)/(t-b),-(f+n)/(f-n),1])}
+function look(eye,target,up=[0,1,0]){let z=norm(sub(eye,target)),x=norm(cross(up,z)),y=cross(z,x);return new Float32Array([x[0],y[0],z[0],0,x[1],y[1],z[1],0,x[2],y[2],z[2],0,-dot(x,eye),-dot(y,eye),-dot(z,eye),1])}
+function inverse(a){let b=new Float32Array(16),a00=a[0],a01=a[1],a02=a[2],a03=a[3],a10=a[4],a11=a[5],a12=a[6],a13=a[7],a20=a[8],a21=a[9],a22=a[10],a23=a[11],a30=a[12],a31=a[13],a32=a[14],a33=a[15];let b00=a00*a11-a01*a10,b01=a00*a12-a02*a10,b02=a00*a13-a03*a10,b03=a01*a12-a02*a11,b04=a01*a13-a03*a11,b05=a02*a13-a03*a12,b06=a20*a31-a21*a30,b07=a20*a32-a22*a30,b08=a20*a33-a23*a30,b09=a21*a32-a22*a31,b10=a21*a33-a23*a31,b11=a22*a33-a23*a32;let d=1/(b00*b11-b01*b10+b02*b09+b03*b08-b04*b07+b05*b06);b[0]=(a11*b11-a12*b10+a13*b09)*d;b[1]=(a02*b10-a01*b11-a03*b09)*d;b[2]=(a31*b05-a32*b04+a33*b03)*d;b[3]=(a22*b04-a21*b05-a23*b03)*d;b[4]=(a12*b08-a10*b11-a13*b07)*d;b[5]=(a00*b11-a02*b08+a03*b07)*d;b[6]=(a32*b02-a30*b05-a33*b01)*d;b[7]=(a20*b05-a22*b02-a23*b01)*d;b[8]=(a10*b10-a11*b08+a13*b06)*d;b[9]=(a01*b08-a00*b10-a03*b06)*d;b[10]=(a30*b04-a31*b02+a33*b00)*d;b[11]=(a21*b02-a20*b04-a23*b00)*d;b[12]=(a11*b07-a10*b09-a12*b06)*d;b[13]=(a00*b09-a01*b07+a02*b06)*d;b[14]=(a31*b01-a30*b03-a32*b00)*d;b[15]=(a20*b03-a21*b01+a22*b00)*d;return b}
+function trans(p,ry=0){let m=I(),c=Math.cos(ry),s=Math.sin(ry);m[0]=c;m[2]=-s;m[8]=s;m[10]=c;m[12]=p[0];m[13]=p[1];m[14]=p[2];return m}
+function euler(p,r=[0,0,0]){let [x,y,z]=p,c=Math.cos,s=Math.sin;let y1=y*c(r[0])-z*s(r[0]),z1=y*s(r[0])+z*c(r[0]);let x2=x*c(r[1])+z1*s(r[1]),z2=-x*s(r[1])+z1*c(r[1]);return [x2*c(r[2])-y1*s(r[2]),x2*s(r[2])+y1*c(r[2]),z2]}
+function hex(h){return [parseInt(h.slice(0,2),16)/255,parseInt(h.slice(2,4),16)/255,parseInt(h.slice(4,6),16)/255]}
+const C={sand:hex('9d9070'),light:hex('b3a486'),edge:hex('887d63'),darkSand:hex('6e6855'),rubber:hex('202320'),steel:hex('414748'),worn:hex('707577'),black:hex('151e1e'),red:hex('74362d'),yellow:hex('bb8c36'),concrete:hex('797d78'),wall:hex('778381'),beam:hex('454f4f'),glass:hex('173c42'),green:hex('4e5b4a'),wood:hex('84705a')};
+const mats={armor:{type:0,rough:.77,metal:.16},rubber:{type:1,rough:.93,metal:.0},metal:{type:2,rough:.53,metal:.78},steel:{type:2,rough:.34,metal:.87},floor:{type:3,rough:.58,metal:.05},wall:{type:4,rough:.91,metal:0},paint:{type:5,rough:.66,metal:.24},lamp:{type:6,rough:.1,metal:0},glass:{type:7,rough:.16,metal:.7},wood:{type:8,rough:.9,metal:0},label:{type:9,rough:.85,metal:0},stripe:{type:10,rough:.84,metal:0},dirt:{type:11,rough:.76,metal:0}};
+const batches=new Map();let group='body';
+function data(mat){let key=group+'|'+mat;if(!batches.has(key))batches.set(key,{mat,group,a:[]});return batches.get(key).a}
+function triangle(a,b,c,n,mat,col,uv){let out=data(mat);[a,b,c].forEach((p,i)=>{out.push(...p,...n,...col,...(uv?uv[i]:[0,0]))})}
+function face(pts,mat,col,n=null,uv=null){if(!n)n=norm(cross(sub(pts[1],pts[0]),sub(pts[2],pts[0])));for(let i=1;i<pts.length-1;i++)triangle(pts[0],pts[i],pts[i+1],n,mat,col,uv?[uv[0],uv[i],uv[i+1]]:null)}
+function solid(verts,faces,mat,col){let center=scale(verts.reduce((a,v)=>add(a,v),[0,0,0]),1/verts.length);for(let f of faces){let p=f.map(i=>verts[i]);let n=norm(cross(sub(p[1],p[0]),sub(p[2],p[0])));let fc=scale(p.reduce((a,v)=>add(a,v),[0,0,0]),1/p.length);if(dot(n,sub(fc,center))<0){p.reverse();n=scale(n,-1)}face(p,mat,col,n)}}
+function box(p,d,mat='armor',col=C.sand,r=[0,0,0],bevel=0){let h=d.map(v=>v/2),tf=v=>add(p,euler(v,r));if(bevel){let b=Math.min(bevel,...h.map(v=>v*.6)),fs=[];for(let ax=0;ax<3;ax++)for(let sg of [-1,1]){let i=(ax+1)%3,j=(ax+2)%3;fs.push([[-1,-1],[1,-1],[1,1],[-1,1]].map(([u,v])=>{let q=[0,0,0];q[ax]=sg*h[ax];q[i]=u*(h[i]-b);q[j]=v*(h[j]-b);return q}))}for(let a=0;a<3;a++)for(let baxis=a+1;baxis<3;baxis++){let c=3-a-baxis;for(let sa of [-1,1])for(let sb of [-1,1]){let q=[];for(let [cut,end] of [[0,-1],[1,-1],[1,1],[0,1]]){let v=[0,0,0];v[a]=sa*(h[a]-(cut?b:0));v[baxis]=sb*(h[baxis]-(cut?0:b));v[c]=end*(h[c]-b);q.push(v)}fs.push(q)}}for(let sx of [-1,1])for(let sy of [-1,1])for(let sz of [-1,1])fs.push([[sx*h[0],sy*(h[1]-b),sz*(h[2]-b)],[sx*(h[0]-b),sy*h[1],sz*(h[2]-b)],[sx*(h[0]-b),sy*(h[1]-b),sz*h[2]]]);for(let f of fs){let pts=f.map(tf),n=norm(cross(sub(pts[1],pts[0]),sub(pts[2],pts[0])));if(dot(n,sub(pts[0],p))<0){pts.reverse();n=scale(n,-1)}face(pts,mat,col,n)}return}let v=[];for(let x of [-1,1])for(let y of [-1,1])for(let z of [-1,1])v.push(tf([x*h[0],y*h[1],z*h[2]]));solid(v,[[0,1,3,2],[4,6,7,5],[0,4,5,1],[2,3,7,6],[0,2,6,4],[1,5,7,3]],mat,col)}
+function cyl(a,b,r1,r2=r1,mat='armor',col=C.sand,segs=24,caps=true){let axis=norm(sub(b,a)),u=norm(cross(axis,Math.abs(axis[1])<.9?[0,1,0]:[1,0,0])),v=cross(axis,u),slope=(r1-r2)/len(sub(b,a));for(let i=0;i<segs;i++){let t=i*TAU/segs,t2=(i+1)*TAU/segs,rad1=add(scale(u,Math.cos(t)),scale(v,Math.sin(t))),rad2=add(scale(u,Math.cos(t2)),scale(v,Math.sin(t2))),p1=add(a,scale(rad1,r1)),p2=add(a,scale(rad2,r1)),p3=add(b,scale(rad2,r2)),p4=add(b,scale(rad1,r2)),n1=norm(add(rad1,scale(axis,slope))),n2=norm(add(rad2,scale(axis,slope)));let out=data(mat);[[p1,n1],[p2,n2],[p3,n2],[p1,n1],[p3,n2],[p4,n1]].forEach(([p,n])=>out.push(...p,...n,...col,0,0));if(caps){triangle(a,p2,p1,scale(axis,-1),mat,col);triangle(b,p4,p3,axis,mat,col)}}}
+function torus(p,axis,R,r,mat='metal',col=C.steel,seg=32,tube=8,start=0,end=TAU){let w=norm(axis),u=norm(cross(w,Math.abs(w[1])<.9?[0,1,0]:[1,0,0])),v=cross(w,u);function pt(a,b){let ra=add(scale(u,Math.cos(a)),scale(v,Math.sin(a))),n=add(scale(ra,Math.cos(b)),scale(w,Math.sin(b)));return [add(p,add(scale(ra,R),scale(n,r))),n]}for(let i=0;i<seg;i++)for(let j=0;j<tube;j++){let a=start+(end-start)*i/seg,A=start+(end-start)*(i+1)/seg,b=j*TAU/tube,B=(j+1)*TAU/tube,ps=[pt(a,b),pt(A,b),pt(A,B),pt(a,B)];let out=data(mat);[0,1,2,0,2,3].forEach(k=>out.push(...ps[k][0],...ps[k][1],...col,0,0))}}
+function pipe(points,r,mat='metal',col=C.steel,seg=10){for(let i=1;i<points.length;i++)cyl(points[i-1],points[i],r,r,mat,col,seg)}
+function bolt(p,n,r=.027,col=C.edge){cyl(p,add(p,scale(n,.021)),r,r,'metal',col,6)}
+function prism(profile,width,mat='armor',col=C.sand,z=0){let v=[];for(let s of [-1,1])for(let [x,y] of profile)v.push([x,y,z+s*width/2]);let n=profile.length,fs=[Array.from({length:n},(_,i)=>i),Array.from({length:n},(_,i)=>i+n)];for(let i=0;i<n;i++)fs.push([i,(i+1)%n,(i+1)%n+n,i+n]);solid(v,fs,mat,col)}
+function loft(lower,upper,y0,y1,mat='armor',col=C.sand){let v=lower.map(([x,z])=>[x,y0,z]).concat(upper.map(([x,z])=>[x,y1,z])),n=lower.length,f=[Array.from({length:n},(_,i)=>i),Array.from({length:n},(_,i)=>i+n)];for(let i=0;i<n;i++)f.push([i,(i+1)%n,(i+1)%n+n,i+n]);solid(v,f,mat,col)}
+// The lettering atlas is generated locally; it has no external font or image dependency.
+const atlas=document.createElement('canvas');atlas.width=1024;atlas.height=1024;const ax=atlas.getContext('2d');ax.clearRect(0,0,1024,1024);
+const labels={};function makeLabel(name,text,x,y,w,h,fg,bg,font='bold 76px Arial'){if(bg){ax.fillStyle=bg;ax.fillRect(x,y,w,h)}ax.fillStyle=fg;ax.font=font;ax.textAlign='center';ax.textBaseline='middle';ax.fillText(text,x+w/2,y+h/2,w*.9);labels[name]=[x/1024,y/1024,(x+w)/1024,(y+h)/1024]}
+makeLabel('bay','04',0,0,256,256,'#d2c7a9','#34413f','bold 195px Arial');makeLabel('maint','MAINTENANCE',256,0,768,120,'#c5c9b9','#33403d','55px Arial');makeLabel('number','21',256,128,256,128,'#d0c1a0',null,'bold 95px Arial');makeLabel('abrams','M1A1',512,128,256,128,'#3e4137',null,'bold 65px monospace');makeLabel('danger','KEEP CLEAR',0,280,512,95,'#b3a68a','#333d39','bold 56px Arial');makeLabel('fire','FIRE',550,280,256,105,'#ebe0c7','#723c31','bold 67px Arial');makeLabel('crane','SWL 10 t',0,400,512,100,'#262e2e','#b79a55','bold 65px monospace');makeLabel('serial','U.S. ARMY  •  21',0,520,640,100,'#393f36',null,'bold 51px monospace');makeLabel('warning','CAUTION',0,660,450,80,'#c3ae79','#40453b','bold 55px Arial');
+function label(name,p,right,up,w,h){let rect=labels[name],r=scale(right,w/2),u=scale(up,h/2),ps=[sub(sub(p,r),u),add(sub(p,u),r),add(add(p,r),u),add(sub(p,r),u)];face(ps,'label',[1,1,1],norm(cross(right,up)),[[rect[0],rect[3]],[rect[2],rect[3]],[rect[2],rect[1]],[rect[0],rect[1]]])}
+await progress(13,'Machining the hull and suspension…');
+// HULL: long low glacis, raised rear engine deck, seven paired road wheels per side.
+prism([[-3.75,.76],[-3.98,1.17],[-2.35,1.84],[3.53,1.84],[3.84,1.38],[3.60,.60],[-3.12,.48]],2.96,'armor',C.sand);
+prism([[-3.98,1.17],[-2.35,1.84],[3.52,1.84],[3.62,1.63],[-2.53,1.63]],3.56,'armor',C.light);
+box([.15,.73,0],[5.75,.44,2.65],'armor',C.darkSand,[0,0,0],.10);
+box([.22,1.85,0],[4.60,.06,3.32],'armor',C.sand,[0,0,0],.02);
+// Welds and panel seams on the glacis.
+pipe([[-3.81,1.248,-1.68],[-2.37,1.844,-1.68]],.008,'metal',C.edge);pipe([[-3.81,1.248,1.68],[-2.37,1.844,1.68]],.008,'metal',C.edge);
+for(let z of [-1.18,1.18]){torus([-3.86,.98,z],[0,0,1],.10,.036,'metal',C.edge,24);box([-3.68,1.11,z],[.21,.13,.17],'armor',C.edge,[0,0,-.12],.02);bolt([-3.82,1.18,z],[0,1,0],.04)}
+// Driver's hatch, seals and periscope cluster.
+cyl([-2.40,1.83,0],[-2.40,1.89,0],.40,.40,'rubber',C.rubber,48);cyl([-2.40,1.89,0],[-2.40,1.94,0],.365,.365,'armor',C.sand,48);
+pipe([[-2.28,1.96,-.18],[-2.28,2.005,-.18],[-2.28,2.005,.18],[-2.28,1.96,.18]],.018,'metal',C.edge);
+for(let z of [-.24,0,.24]){box([-2.71,1.914,z],[.18,.10,.18],'armor',C.edge,[0,0,.15],.015);box([-2.81,1.932,z],[.011,.052,.135],'glass',C.glass,[0,0,.15])}
+for(let side of [-1,1]){
+ let z=side*1.51;
+ // Torsion arms, paired road wheels, rubber tires, dished wheel centers and fasteners.
+ for(let i=0;i<7;i++){
+  let x=-2.55+i*.835,y=.66;
+  cyl([x+.19,.91,side*1.05],[x,.66,side*1.46],.076,.09,'metal',C.darkSand,12);
+  for(let dz of [-.165,.165]){let zz=z+dz; cyl([x,y,zz-.115],[x,y,zz+.115],.463,.463,'rubber',C.rubber,48);cyl([x,y,zz-.12],[x,y,zz+.12],.363,.363,'armor',C.darkSand,40)}
+  let oz=side*1.795;
+  cyl([x,y,oz-side*.07],[x,y,oz],.34,.33,'armor',scale(C.sand,.88),40);torus([x,y,oz+side*.005],[0,0,1],.324,.018,'metal',C.edge,40);
+  cyl([x,y,oz],[x,y,oz+side*.064],.122,.101,'armor',C.sand,24);cyl([x,y,oz+side*.066],[x,y,oz+side*.08],.052,.052,'steel',C.edge,12);
+  for(let j=0;j<10;j++){let a=j*TAU/10;bolt([x+Math.cos(a)*.236,y+Math.sin(a)*.236,oz],[0,0,side],.024,C.edge)}
+  for(let j=0;j<5;j++){let a=j*TAU/5+.2; cyl([x+Math.cos(a)*.177,y+Math.sin(a)*.177,oz+side*.004],[x+Math.cos(a)*.177,y+Math.sin(a)*.177,oz+side*.008],.041,.041,'metal',C.darkSand,12)}
+ }
+ for(let x of [-3.10,3.10]){
+  let rear=x>0,oz=side*1.79,y=.80;
+  cyl([x,y,side*1.20],[x,y,side*1.74],rear?.555:.566,rear?.555:.566,'metal',C.darkSand,44);
+  cyl([x,y,side*1.72],[x,y,oz],.48,.45,'armor',C.edge,40);torus([x,y,oz],[0,0,1],.40,.032,'metal',C.sand,40);cyl([x,y,oz],[x,y,oz+side*.05],.16,.13,'metal',C.sand,18);
+  for(let j=0;j<(rear?13:8);j++){let a=j*TAU/(rear?13:8);if(rear)box([x+Math.cos(a)*.566,y+Math.sin(a)*.566,side*1.5],[.12,.12,.60],'metal',C.edge,[0,0,a],.01);let q=[x+Math.cos(a)*.28,y+Math.sin(a)*.28,oz+side*.006];cyl(q,add(q,[0,0,side*.009]),.081,.081,'metal',C.black,12);bolt([x+Math.cos(a)*.395,y+Math.sin(a)*.395,oz],[0,0,side],.028)}
+ }
+ // Continuous articulated tread loop. Each shoe has two rubber pads, steel guides and pin ends.
+ let L=6.2,R=.66,total=2*L+TAU*R,N=84;
+ for(let i=0;i<N;i++){
+  let t=(i+.5)*total/N,x,y,a;
+  if(t<L){x=-3.1+t;y=.8+R;a=0}else if(t<L+PI*R){let th=PI/2-(t-L)/R;x=3.1+R*Math.cos(th);y=.8+R*Math.sin(th);a=th-PI/2}else if(t<2*L+PI*R){x=3.1-(t-L-PI*R);y=.8-R;a=PI}else{let th=-PI/2-(t-2*L-PI*R)/R;x=-3.1+R*Math.cos(th);y=.8+R*Math.sin(th);a=th-PI/2}
+  let p=[x,y,z],out=[-Math.sin(a),Math.cos(a),0],cc=scale(C.steel,.74+rnd()*.23);
+  box(p,[.185,.079,.684],'metal',cc,[0,0,a],.008);
+  for(let dz of [-.163,.163])box(add(add(p,scale(out,.054)),[0,0,dz]),[.145,.058,.275],'rubber',scale(C.rubber,.86+rnd()*.26),[0,0,a],.014);
+  for(let dz of [-.366,.366]){box(add(p,[0,0,dz]),[.177,.095,.075],'metal',C.edge,[0,0,a],.01);let pp=add(p,[0,0,dz]);cyl(add(pp,[0,0,-.047]),add(pp,[0,0,.047]),.037,.037,'steel',C.worn,8)}
+  box(add(p,scale(out,-.08)),[.072,.11,.06],'metal',C.steel,[0,0,a],.018);
+ }
+ // Separate skirt panels with narrow seams, hinges, lower grime and retainers.
+ for(let i=0;i<6;i++){let x=-2.81+i*1.065,zz=side*1.917;box([x,1.443,zz],[1.047,.775,.10],'armor',scale(C.sand,.96+rnd()*.055),[0,0,0],.022);box([x,1.826,zz],[1.015,.038,.13],'armor',C.edge,[0,0,0],.008);for(let bx of [-.435,.435]){bolt([x+bx,1.727,zz+side*.058],[0,0,side],.028);bolt([x+bx,1.102,zz+side*.058],[0,0,side],.024)}for(let bx of [-.29,.29])cyl([x+bx-.075,1.824,zz+side*.025],[x+bx+.075,1.824,zz+side*.025],.028,.028,'metal',C.edge,12)}
+ // Front fender rubber and ribbed braces.
+ box([-3.59,1.153,side*1.52],[.15,.58,.67],'rubber',C.rubber,[0,0,-.20],.025);box([-3.55,1.465,side*1.52],[.66,.09,.80],'armor',C.sand,[0,0,.12],.028);
+ // Protected twin headlights.
+ box([-3.20,1.62,side*1.60],[.27,.15,.32],'armor',C.edge,[0,0,.2],.025);
+ for(let dz of [-.092,.092]){cyl([-3.36,1.65,side*1.60+dz],[-3.385,1.65,side*1.60+dz],.063,.062,'metal',C.worn,20);cyl([-3.389,1.65,side*1.60+dz],[-3.394,1.65,side*1.60+dz],.05,.05,'glass',hex('bac0ac'),20)}
+ pipe([[-3.47,1.57,side*1.39],[-3.47,1.80,side*1.39],[-3.13,1.85,side*1.39],[-3.13,1.69,side*1.39]],.018,'metal',C.edge);pipe([[-3.47,1.57,side*1.80],[-3.47,1.80,side*1.80],[-3.13,1.85,side*1.80],[-3.13,1.69,side*1.80]],.018,'metal',C.edge);cyl([-3.47,1.80,side*1.39],[-3.47,1.80,side*1.80],.018,.018,'metal',C.edge,8);
+ // Painted tactical chevron on the middle skirt.
+ let zz=side*1.976;for(let s of [-1,1])box([.15+s*.20,1.46,zz],[.075,.51,.006],'paint',C.black,[0,0,s*.69]);
+ label('number',[2.43,1.44,zz],[side,0,0],[0,1,0],.50,.25);
+ // Rear mudflaps and marker lamps.
+ box([3.62,.85,side*1.57],[.075,.69,.62],'rubber',C.rubber,[0,0,.05],.015);box([3.82,1.5,side*1.51],[.09,.21,.18],'armor',C.edge,[0,0,0],.02);box([3.872,1.51,side*1.51],[.008,.093,.123],'glass',hex('742b22'));
+}
+// Rear engine louvers and exhaust grille.
+for(let z of [-.93,.93]){box([2.65,1.896,z],[1.72,.05,1.12],'metal',C.black);for(let i=0;i<22;i++)box([1.87+i*.074,1.935,z],[.048,.031,1.07],'armor',C.edge,[0,0,-.17]);for(let x of [1.8,3.52])for(let dz of [-.57,.57])bolt([x,1.93,z+dz],[0,1,0],.025)}
+box([2.65,1.91,0],[1.8,.06,.53],'armor',C.sand,[0,0,0],.025);for(let x of [1.94,3.34])box([x,1.96,0],[.06,.04,.42],'metal',C.edge);
+box([3.77,1.26,0],[.17,.64,2.44],'metal',C.black,[0,0,0],.02);for(let i=0;i<13;i++)box([3.88,.99+i*.044,0],[.12,.019,2.39],'armor',C.darkSand,[0,0,.22]);for(let z=-1.17;z<1.2;z+=.26)box([3.92,1.26,z],[.032,.63,.028],'metal',C.edge);
+for(let z of [-1.18,1.18])torus([3.88,.69,z],[0,0,1],.10,.032,'metal',C.worn,24);
+let cable=[];for(let i=0;i<=70;i++){let t=i/70*TAU;cable.push([2.64+.73*Math.cos(t),1.97+.012*Math.sin(3*t),.63*Math.sin(t)])}pipe(cable,.025,'metal',C.steel,8);
+await progress(34,'Assembling the turret and fine details…');
+group='turret';
+cyl([0,-.09,0],[0,.10,0],1.36,1.36,'metal',C.black,80);cyl([0,.035,0],[0,.17,0],1.44,1.41,'armor',C.edge,80);
+const lower=[[-1.97,-.59],[-1.44,-1.60],[.50,-1.70],[2.10,-1.50],[2.35,-1.10],[2.35,1.10],[2.10,1.50],[.50,1.70],[-1.44,1.60],[-1.97,.59]],upper=[[-1.56,-.56],[-1.10,-1.35],[.48,-1.43],[1.99,-1.24],[2.10,-1.0],[2.10,1.0],[1.99,1.24],[.48,1.43],[-1.10,1.35],[-1.56,.56]];
+loft(lower,upper,.12,1.005,'armor',C.sand);
+// Sloping cheek appliqué faces with beveled seams.
+for(let s of [-1,1]){
+ let vs=[[-1.97,.17,s*.59],[-1.45,.17,s*1.58],[-1.10,.94,s*1.35],[-1.56,.94,s*.56],[-1.90,.17,s*.58],[-1.40,.17,s*1.51],[-1.05,.92,s*1.30],[-1.51,.92,s*.55]];
+ solid(vs,[[0,1,2,3],[4,7,6,5],[0,4,5,1],[1,5,6,2],[2,6,7,3],[3,7,4,0]],'armor',C.light);
+ pipe([[.47,.985,s*1.435],[1.98,.985,s*1.245],[2.10,.985,s*1.0]],.008,'metal',C.edge);
+ // Smoke launcher bracket and six small angled launch tubes.
+ box([-.87,.42,s*1.64],[.63,.18,.15],'armor',C.edge,[s*.13,0,-.09],.025);
+ for(let j=0;j<6;j++){let a=[-1.12+(j%3)*.20,.39+Math.floor(j/3)*.12,s*1.67],b=add(a,[-.12,.11,s*.20]);cyl(a,b,.055,.055,'armor',C.edge,16);cyl(b,add(b,scale(norm(sub(b,a)),.01)),.044,.044,'metal',C.black,16)}
+ // Side equipment boxes, handles and tie-down loops.
+ box([1.24,.57,s*1.57],[1.0,.39,.11],'armor',C.edge,[s*.14,0,0],.023);
+ for(let x of [.63,1.92])pipe([[x,.45,s*1.665],[x,.66,s*1.675],[x+.18,.66,s*1.675],[x+.18,.45,s*1.665]],.016,'metal',C.edge);
+ for(let x of [-.52,.12,.78,1.48]){bolt([x,.92,s*(1.43-(Math.max(x,0)/2)*.15)],[0,.95,s*.2],.024);pipe([[x,.87,s*1.46],[x,.965,s*1.46],[x+.13,.965,s*1.46],[x+.13,.87,s*1.46]],.014,'metal',C.edge)}
+ label('number',[.38,.53,s*1.712],[s,0,0],[0,1,0],.5,.31);
+}
+// Gun mantlet and long thermal-sleeved M256 silhouette, including open muzzle.
+box([-1.77,.55,0],[.73,.62,.80],'armor',C.edge,[0,0,0],.09);cyl([-2.01,.57,0],[-2.21,.57,0],.245,.174,'armor',C.sand,40);
+const barrelY=x=>.57+(-x-2.1)*.014;
+let barrelParts=[[-2.12,-2.60,.145,.136],[-2.60,-3.42,.125,.122],[-3.42,-3.52,.17,.185],[-3.52,-4.11,.185,.173],[-4.11,-4.26,.173,.115],[-4.26,-5.96,.106,.096],[-5.96,-6.12,.109,.109]];
+for(let [a,b,r1,r2] of barrelParts)cyl([a,barrelY(a),0],[b,barrelY(b),0],r1,r2,'armor',a<-5.9?C.edge:C.sand,40,false);
+for(let x of [-2.63,-3.31,-3.58,-4.08,-4.46,-5.40]){cyl([x-.023,barrelY(x-.023),0],[x+.023,barrelY(x+.023),0],x>-4.2&&x<-3.5?.190:.128,x>-4.2&&x<-3.5?.190:.128,'metal',C.edge,36,false);box([x,barrelY(x)+.117,.045],[.045,.035,.06],'armor',C.edge,[0,0,0],.008)}
+torus([-6.123,barrelY(-6.12),0],[1,0,0],.091,.016,'steel',C.worn,40,10);cyl([-6.121,barrelY(-6.12),0],[-5.65,barrelY(-5.65),0],.079,.079,'metal',C.black,36,false);cyl([-5.651,barrelY(-5.65),0],[-5.650,barrelY(-5.65),0],.079,.079,'rubber',C.black,36);
+// Roof panels and bolts.
+for(let x of [.99,1.65]){box([x,1.016,0],[.59,.026,1.90],'armor',C.light,[0,0,0],.022);for(let z of [-.84,.84])for(let dx of [-.20,.20])bolt([x+dx,1.035,z],[0,1,0],.022)}
+// Commander cupola, vision blocks, loader hatch and gunner sight. No M1A2 CITV.
+cyl([-.05,1.0,.76],[-.05,1.21,.76],.39,.34,'armor',C.edge,48);cyl([-.05,1.205,.76],[-.05,1.255,.76],.358,.358,'armor',C.sand,48);
+for(let j=0;j<7;j++){let a=j*TAU/7,p=[-.05+Math.cos(a)*.331,1.145,.76+Math.sin(a)*.331];box(p,[.105,.069,.071],'glass',C.glass,[0,PI/2-a,0],.005)}
+pipe([[-.22,1.266,.69],[-.22,1.318,.69],[-.22,1.318,.85],[-.22,1.266,.85]],.016,'metal',C.edge);
+cyl([.12,1.006,-.75],[.12,1.04,-.75],.41,.41,'rubber',C.rubber,48);cyl([.12,1.04,-.75],[.12,1.09,-.75],.385,.385,'armor',C.light,48);box([.46,1.09,-.75],[.10,.08,.35],'armor',C.edge,[0,0,0],.015);pipe([[-.01,1.105,-.84],[-.01,1.17,-.84],[-.01,1.17,-.65],[-.01,1.105,-.65]],.018,'metal',C.edge);
+box([-.94,1.13,.56],[.47,.27,.42],'armor',C.edge,[0,0,0],.025);box([-1.186,1.14,.56],[.02,.163,.30],'glass',C.glass);box([-1.20,1.23,.56],[.06,.037,.40],'armor',C.sand,[0,0,0],.01);box([-.99,1.017,-.48],[.28,.06,.21],'armor',C.edge,[0,0,0],.014);box([-1.135,1.045,-.48],[.017,.040,.155],'glass',C.glass);
+// Compact exterior machine-gun silhouettes on pintle mounts.
+function mg(p,big){let [x,y,z]=p;cyl([x,y-.27,z],[x,y,z],.035,.042,'metal',C.steel,16);box([x-.15,y+.025,z],[big?.48:.34,.12,big?.13:.09],'metal',C.black,[0,0,0],.018);cyl([x-.37,y+.044,z],[x-(big?1.05:.79),y+.044,z],big?.031:.024,big?.023:.018,'metal',C.steel,20);cyl([x-.36,y+.044,z],[x-.61,y+.044,z],.048,.043,'metal',C.black,20);for(let i=0;i<7;i++)for(let side of [-1,1])cyl([x-.39-i*.03,y+.044,z+side*.041],[x-.39-i*.03,y+.044,z+side*.046],.01,.01,'rubber',C.black,8);box([x+.07,y+.09,z],[.07,.035,.10],'steel',C.steel);for(let s of [-1,1])cyl([x+.08,y+.04,z+s*.085],[x+.08,y-.045,z+s*.085],.018,.018,'rubber',C.black,12);box([x-.12,y-.035,z+.22],[.22,.18,.21],'paint',C.green,[0,0,0],.02);box([x-.64,y+.085,z],[.028,.055,.018],'metal',C.steel)}
+mg([-.45,1.54,.86],true);mg([-.28,1.36,-.98],false);
+// Radio antenna bases and flexible whips.
+for(let s of [-1,1]){let p=[1.65,1.07,s*.95];cyl(p,add(p,[0,.17,0]),.06,.041,'rubber',C.rubber,20);cyl(add(p,[0,.17,0]),add(p,[-.05,1.52,s*.035]),.01,.005,'metal',C.black,10);for(let i=0;i<5;i++)torus(add(p,[0,.026+i*.02,0]),[0,1,0],.045,.004,'metal',C.steel,16,6)}
+// Open wire bustle rack, rear crossbars, straps and soft stowage.
+box([2.39,.41,0],[.055,.5,2.59],'armor',C.edge,[0,0,0],.015);
+for(let y of [.18,.70]){pipe([[2.24,y,-1.38],[3.03,y,-1.48],[3.14,y,-1.30],[3.14,y,1.30],[3.03,y,1.48],[2.24,y,1.38]],.021,'metal',C.edge,10)}
+for(let z=-1.32;z<1.34;z+=.22)cyl([3.14,.18,z],[3.14,.70,z],.012,.012,'metal',C.edge,8);
+for(let z=-1.29;z<1.3;z+=.12)cyl([2.30,.18,z],[3.13,.18,z],.008,.008,'metal',C.darkSand,6);
+for(let y=.25;y<.70;y+=.10)cyl([3.145,y,-1.32],[3.145,y,1.32],.008,.008,'metal',C.darkSand,6);
+for(let s of [-1,1])for(let x=2.39;x<3.05;x+=.16)cyl([x,.18,s*1.43],[x,.70,s*1.43],.009,.009,'metal',C.darkSand,6);
+for(let [z,col] of [[-.75,C.green],[0,C.darkSand],[.74,C.light]]){box([2.70,.45,z],[.62,.43,.59],'armor',col,[0,.03,.04],.13);for(let dx of [-.18,.18])box([2.70+dx,.47,z],[.048,.46,.61],'rubber',scale(col,.7),[0,.03,.04],.045);pipe([[2.63,.684,z-.10],[2.63,.72,z-.10],[2.79,.72,z-.10],[2.79,.684,z-.10]],.017,'rubber',C.darkSand)}
+for(let s of [-1,1]){box([1.86,1.20,s*.56],[.24,.33,.39],'paint',C.green,[0,.04,0],.033);box([1.86,1.38,s*.56],[.12,.06,.27],'paint',C.green,[0,0,0],.015);for(let a of [-1,1])box([1.728,1.19,s*.56],[.012,.3,.028],'metal',C.edge,[a*.8,0,0]);}
+await progress(52,'Fitting the maintenance garage…');
+group='room';
+// Floor is one continuous surface; the shader supplies aggregate, cracks, joints, oil and tread scuffs.
+face([[-20,0,-17],[-20,0,17],[20,0,17],[20,0,-17]],'floor',C.concrete,[0,1,0]);
+// Interior walls are single sided and disappear when the camera goes outside them.
+group='wallBack';face([[-12,0,-8.6],[9.5,0,-8.6],[9.5,7.6,-8.6],[-12,7.6,-8.6]],'wall',C.wall,[0,0,1]);
+box([-1.3,1.08,-8.56],[21.4,1.94,.022],'paint',hex('455752'));box([-1.3,2.10,-8.53],[21.4,.045,.03],'paint',hex('a59770'));
+group='wallRight';face([[9.5,0,-8.6],[9.5,0,9],[9.5,7.6,9],[9.5,7.6,-8.6]],'wall',C.wall,[-1,0,0]);
+box([9.46,1.06,.20],[.02,1.90,17.3],'paint',hex('455752'));box([9.43,2.10,.20],[.03,.045,17.3],'paint',hex('a59770'));
+// Wide ribbed roller shutter and personnel door.
+box([9.34,2.69,.55],[.16,5.32,6.13],'metal',hex('465250'));
+for(let i=0;i<50;i++)box([9.23,.17+i*.104,.55],[.061,.073,5.90],'paint',hex('68706b'),[0,0,0],.015);
+for(let z of [-2.52,3.62])box([9.17,2.74,z],[.24,5.5,.13],'metal',C.beam,[0,0,0],.015);
+box([9.17,5.49,.55],[.35,.23,6.22],'metal',C.beam,[0,0,0],.035);box([9.16,.22,.55],[.16,.08,1.06],'metal',C.steel);
+box([9.22,1.34,6.20],[.17,2.68,1.29],'metal',hex('344945'),[0,0,0],.015);box([9.10,1.97,6.20],[.05,.54,.78],'glass',C.glass);cyl([9.10,1.05,6.58],[9.03,1.05,6.58],.025,.025,'steel',C.worn,12);cyl([9.03,1.05,6.58],[9.03,1.05,6.40],.021,.021,'steel',C.worn,12);
+label('warning',[9.105,3.68,6.20],[0,0,1],[0,1,0],1.32,.25);
+group='wallBack';
+// High dusty windows, mullions, block wall signage, conduits.
+for(let x of [-8,-3,2,7]){box([x,5.28,-8.48],[3.75,1.53,.10],'metal',C.beam);box([x,5.28,-8.412],[3.56,1.34,.023],'glass',hex('637b7c'));for(let dx of [-1.18,0,1.18])box([x+dx,5.28,-8.38],[.038,1.34,.06],'metal',C.beam);box([x,5.27,-8.375],[3.65,.04,.07],'metal',C.beam)}
+label('bay',[3.95,3.25,-8.40],[1,0,0],[0,1,0],1.12,1.12);label('maint',[.16,3.35,-8.41],[1,0,0],[0,1,0],4.74,.58);
+pipe([[-11,2.4,-8.39],[-8,2.4,-8.39],[-8,4.1,-8.39],[8.9,4.1,-8.39]],.026,'metal',C.beam,12);for(let x=-8;x<9;x+=1.5)box([x,4.1,-8.40],[.08,.13,.10],'metal',C.worn);
+box([-7.98,2.66,-8.32],[.37,.49,.19],'paint',C.beam,[0,0,0],.015);
+group='room';
+// I-section steel columns and overhead rafters.
+function column(x,z){box([x,3.68,z],[.13,7.36,.36],'metal',C.beam);for(let dx of [-.17,.17])box([x+dx,3.68,z],[.075,7.36,.48],'metal',C.beam);box([x,.08,z],[.65,.16,.72],'metal',C.beam,[0,0,0],.012);for(let dx of [-.25,.25])for(let dz of [-.27,.27])bolt([x+dx,.164,z+dz],[0,1,0],.045,C.worn)}
+for(let x of [-11,-5,2,9]){for(let z of [-8.3,8.3]){group=z>0?'frontFrame':'room';column(x,z)}group='room';box([x,6.98,0],[.18,.52,16.78],'metal',C.beam);for(let y of [6.70,7.23])box([x,y,0],[.44,.065,16.88],'metal',C.beam);for(let z of [-7,7])pipe([[x,5.95,z*1.17],[x,6.73,z*.70]],.055,'metal',C.beam,8)}
+for(let z of [-8.23,-4,0,4,8.23])box([-1.0,7.29,z],[21.5,.20,.11],'metal',C.beam);
+// Roof panels exclude shadow casting, leaving the garage's open entrance as the broad key light.
+group='ceiling';face([[-12,7.50,-8.6],[9.5,7.50,-8.6],[9.5,7.50,8.6],[-12,7.50,8.6]],'metal',hex('3b4646'),[0,-1,0]);for(let x=-11.5;x<9.5;x+=.55)box([x,7.43,0],[.10,.10,17.2],'metal',hex('404c4c'));
+group='room';
+// Industrial fluorescent fixtures, suspended on thin wire.
+for(let x of [-7,-1,5])for(let z of [-4.4,4.4]){box([x,6.45,z],[3.25,.13,.48],'metal',C.beam,[0,0,0],.03);for(let zz of [-.125,.125]){cyl([x-1.48,6.365,z+zz],[x+1.48,6.365,z+zz],.034,.034,'lamp',hex('f1e9d6'),16);for(let dx of [-1.52,1.52])box([x+dx,6.365,z+zz],[.07,.085,.09],'paint',C.beam)}for(let dx of [-1.30,1.30])cyl([x+dx,6.50,z],[x+dx,7.3,z],.006,.006,'metal',C.black,6)}
+// Yellow maintenance crane with hoist, hanging cable and forged hook.
+for(let z of [-7.95,7.95]){box([-1,5.95,z],[21.3,.22,.21],'metal',C.steel);box([5.0,6.10,z],[.93,.27,.62],'paint',C.yellow,[0,0,0],.025)}
+box([5.0,5.70,0],[.33,.54,15.9],'paint',C.yellow);for(let y of [5.40,5.98])box([5.0,y,0],[.73,.085,16.1],'paint',C.yellow);label('crane',[4.627,5.7,1.15],[0,0,1],[0,1,0],1.48,.29);
+box([5.0,5.24,-5.8],[.90,.47,.61],'paint',hex('a58339'),[0,0,0],.045);cyl([5.0,5.10,-5.85],[5.0,2.56,-5.85],.012,.012,'steel',C.steel,8);cyl([5.0,5.10,-5.70],[5.0,2.56,-5.70],.012,.012,'steel',C.steel,8);box([5.0,2.52,-5.77],[.20,.28,.21],'paint',C.yellow,[0,0,0],.06);torus([5.0,2.25,-5.77],[1,0,0],.13,.027,'steel',C.worn,32,10,-.4,4.8);
+// Worn painted parking bay, cross marks and drainage channel.
+for(let z of [-2.76,2.76])box([-.50,.005,z],[11.35,.006,.075],'stripe',hex('b29b57'));
+for(let x of [-6.18,5.17]){box([x,.005,0],[.076,.006,5.6],'stripe',hex('b29b57'));for(let z of [-2.96,2.96])box([x,.006,z],[.60,.008,.085],'stripe',hex('b29b57'))}
+box([-.5,.014,4.4],[12.8,.016,.34],'metal',C.black);for(let i=0;i<128;i++)box([-6.82+i*.1,.032,4.40],[.035,.045,.34],'metal',C.steel);for(let z of [4.23,4.57])box([-.5,.039,z],[12.85,.032,.035],'metal',C.worn);
+// Workbench, cabinets and drawer pulls.
+for(let x of [-1.90,1.93])for(let z of [-7.30,-8.04])box([x,.46,z],[.085,.90,.085],'metal',C.beam);
+box([0,1.006,-7.67],[4.16,.10,.93],'wood',C.wood,[0,0,0],.02);box([0,.36,-7.67],[4.12,.065,.89],'metal',C.beam);box([1.05,.71,-7.67],[1.58,.50,.80],'paint',hex('43534d'),[0,0,0],.022);
+for(let y of [.61,.81]){box([1.05,y,-7.25],[1.50,.18,.028],'paint',C.green);cyl([.69,y,-7.20],[1.41,y,-7.20],.017,.017,'steel',C.worn,10)}
+// Bench vise, scattered hand tools and cans.
+box([-1.32,1.094,-7.53],[.32,.085,.27],'metal',C.steel,[0,0,0],.02);box([-1.32,1.25,-7.53],[.15,.26,.17],'paint',hex('526877'),[0,0,0],.015);for(let z of [-7.69,-7.42])box([-1.32,1.31,z],[.35,.15,.08],'steel',C.steel,[0,0,0],.01);cyl([-1.32,1.23,-7.61],[-1.32,1.23,-7.18],.022,.022,'steel',C.worn,12);cyl([-1.43,1.23,-7.18],[-1.21,1.23,-7.18],.016,.016,'steel',C.worn,12);
+for(let i=0;i<5;i++){let x=.6+i*.25;cyl([x,1.06,-7.92],[x,1.24+(i%2)*.07,-7.92],.053,.053,'paint',i%2?C.red:C.green,20);cyl([x,1.245+(i%2)*.07,-7.92],[x,1.27+(i%2)*.07,-7.92],.022,.022,'metal',C.steel,12)}
+for(let i=0;i<8;i++){let x=-.73+rnd()*1.15,z=-7.65+rnd()*.34,ang=rnd()*PI;box([x,1.065,z],[.22,.016,.027],'steel',C.worn,[0,ang,0],.006)}
+// Pegboard with hanging wrenches.
+group='wallBack';box([-.80,2.03,-8.36],[3.20,1.36,.07],'wood',hex('665e4c'));for(let x=-2.28;x<.75;x+=.12)for(let y=1.44;y<2.63;y+=.12)cyl([x,y,-8.313],[x,y,-8.309],.012,.012,'metal',C.black,6);for(let i=0;i<8;i++){let x=-2.07+i*.35,y=2.39;box([x,y-.20,-8.27],[.033,.34+(i%3)*.06,.03],'steel',C.worn,[0,0,(i%2)*.07],.01);torus([x,y,-8.26],[0,0,1],.055,.018,'steel',C.worn,18,8,.7,5.6);torus([x,y-.39-(i%3)*.03,-8.26],[0,0,1],.038,.012,'steel',C.worn,18,8)}
+group='room';
+// Rolling red tool chest.
+box([-4.70,.72,-6.78],[1.57,1.13,.77],'paint',C.red,[0,0,0],.035);box([-4.70,1.307,-6.78],[1.65,.067,.83],'rubber',C.rubber,[0,0,0],.025);
+for(let i=0;i<6;i++){let y=.28+i*.162;box([-4.7,y,-6.373],[1.43,.140,.025],'paint',hex('874439'),[0,0,0],.006);box([-4.7,y+.047,-6.35],[1.28,.032,.032],'steel',C.worn,[0,0,0],.005)}
+for(let x of [-5.26,-4.13])for(let z of [-7.02,-6.54])cyl([x,.145,z-.05],[x,.145,z+.05],.13,.13,'rubber',C.rubber,20);
+pipe([[-3.88,.96,-7.01],[-3.73,.96,-7.01],[-3.73,.96,-6.57],[-3.88,.96,-6.57]],.024,'steel',C.worn);
+// Steel shelves and supply boxes.
+for(let x of [6.20,8.69])for(let z of [-7.20,-8.04])box([x,1.63,z],[.058,3.26,.058],'metal',C.beam);
+for(let y of [.22,1.10,2.02,2.98])box([7.45,y,-7.62],[2.55,.075,.9],'metal',C.beam);
+for(let i=0;i<9;i++){let x=6.61+(i%3)*.81,y=.24+Math.floor(i/3)*.91;box([x,y+.29,-7.62],[.66,.54,.65],i%3===0?'wood':'paint',i%3===0?C.wood:C.green,[0,0,0],.025);for(let dx of [-.24,.24])box([x+dx,y+.30,-7.28],[.055,.56,.034],'metal',C.darkSand);box([x,y+.32,-7.246],[.22,.12,.006],'paint',hex('aca993'))}
+// Wood pallet and service cases.
+for(let z of [-5.70,-5.17,-4.64])box([6.60,.09,z],[1.64,.17,.13],'wood',C.wood);for(let i=0;i<7;i++)box([5.84+i*.25,.20,-5.17],[.20,.068,1.40],'wood',scale(C.wood,.90+rnd()*.20));
+box([6.61,.59,-5.15],[1.32,.70,1.03],'paint',C.green,[0,0,0],.04);box([6.61,.95,-5.15],[1.36,.065,1.07],'paint',C.edge,[0,0,0],.016);for(let x of [6.11,7.11])box([x,.62,-4.62],[.08,.68,.035],'metal',C.darkSand);
+// Air compressor, hose reel and extinguisher.
+cyl([7.22,.46,-3.96],[8.46,.46,-3.96],.32,.32,'paint',hex('41585d'),40);for(let x of [7.26,8.40]){cyl([x,.18,-4.22],[x,.18,-3.70],.15,.15,'rubber',C.rubber,20);box([x,.14,-3.96],[.08,.28,.10],'metal',C.beam)}box([7.60,.87,-3.96],[.45,.31,.40],'metal',C.steel,[0,0,0],.025);for(let i=0;i<9;i++)box([7.41+i*.047,.90,-3.96],[.02,.33,.45],'metal',C.black);cyl([8.04,.77,-3.96],[8.04,1.02,-3.96],.045,.045,'metal',C.steel,16);cyl([8.04,1.03,-3.99],[8.04,1.03,-3.93],.095,.095,'paint',hex('bbc0af'),24);
+let hose=[];for(let i=0;i<170;i++){let t=i/169*TAU*2.65,r=.46+i/169*.20;hose.push([7.04+r*Math.cos(t),.043,-3.15+r*Math.sin(t)])}pipe(hose,.021,'rubber',hex('292d29'),8);pipe([[7.05,.04,-3.15],[7.8,.05,-3.32],[8.1,.2,-3.85],[8.06,.85,-3.9]],.021,'rubber',C.rubber,8);
+cyl([2.43,.27,-8.01],[2.43,1.00,-8.01],.135,.135,'paint',hex('883d32'),28);cyl([2.43,1.00,-8.01],[2.43,1.10,-8.01],.053,.048,'metal',C.steel,16);box([2.43,1.14,-8.01],[.20,.037,.08],'metal',C.steel);pipe([[2.43,1.09,-8.01],[2.62,1.07,-8.01],[2.63,.58,-8.01]],.018,'rubber',C.black);group='wallBack';label('fire',[2.42,1.71,-8.37],[1,0,0],[0,1,0],.40,.21);group='room';
+// Spare track shoes, jack stands and a small work light.
+for(let i=0;i<4;i++)box([-5.64,.08+i*.07,-5.63],[.23,.07,.63],'metal',C.steel,[0,i*.05,.0],.01);
+function stand(x,z){for(let sx of [-1,1])for(let sz of [-1,1])cyl([x+sx*.21,.05,z+sz*.18],[x,.47,z],.030,.023,'paint',hex('9c5936'),10);box([x,.05,z],[.52,.052,.44],'metal',C.steel,[0,0,0],.02);cyl([x,.43,z],[x,.77,z],.036,.029,'metal',C.worn,12);box([x,.78,z],[.20,.045,.15],'metal',C.steel,[0,0,0],.012)}stand(-3.90,-3.73);stand(-4.58,-3.76);
+pipe([[-5.16,.03,-4.25],[-5.34,1.15,-4.18],[-5.14,1.58,-4.13]],.02,'metal',C.steel,10);for(let dx of [-.24,.24])pipe([[-5.28,.2,-4.2],[-5.28+dx,.03,-4.05]],.023,'metal',C.steel,8);box([-5.12,1.56,-4.11],[.23,.13,.08],'paint',C.yellow,[.3,0,-.25],.026);box([-5.106,1.573,-4.059],[.172,.086,.011],'lamp',hex('f0d4a0'),[.3,0,-.25]);
+await progress(68,'Preparing light, reflections and surface finish…');
+// Custom WebGL 2 renderer: GGX shading, soft shadow maps, planar reflections,
+// procedural microtexture, screen-space ambient occlusion, bloom and filmic tonemapping.
+const vertex=`#version 300 es
+precision highp float;
+layout(location=0) in vec3 aP;layout(location=1) in vec3 aN;layout(location=2) in vec3 aC;layout(location=3) in vec2 aUV;
+uniform mat4 uVP,uModel,uLightVP,uRefVP;
+out vec3 vP,vN,vC,vLocal;out vec2 vUV;out vec4 vShadow,vRef;
+void main(){vec4 p=uModel*vec4(aP,1.);vP=p.xyz;vLocal=aP;vN=mat3(uModel)*aN;vC=aC;vUV=aUV;vShadow=uLightVP*p;vRef=uRefVP*p;gl_Position=uVP*p;}`;
+const fragment=`#version 300 es
+precision highp float;
+in vec3 vP,vN,vC,vLocal;in vec2 vUV;in vec4 vShadow,vRef;
+layout(location=0) out vec4 frag;layout(location=1) out vec4 outN;
+uniform vec3 uEye,uKey,uFill;uniform float uRough,uMetal,uAmbient,uShadowSize,uLampPower;uniform int uType,uPass;
+uniform sampler2D uShadow,uReflection,uAtlas;
+const float PI=3.14159265359;
+float hash(vec3 p){p=fract(p*.1031);p+=dot(p,p.yzx+33.33);return fract((p.x+p.y)*p.z);}
+float noise(vec3 p){vec3 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(mix(hash(i),hash(i+vec3(1,0,0)),f.x),mix(hash(i+vec3(0,1,0)),hash(i+vec3(1,1,0)),f.x),f.y),mix(mix(hash(i+vec3(0,0,1)),hash(i+vec3(1,0,1)),f.x),mix(hash(i+vec3(0,1,1)),hash(i+vec3(1,1,1)),f.x),f.y),f.z);}
+float fbm(vec3 p){return noise(p)*.57+noise(p*2.07)*.28+noise(p*4.13)*.15;}
+vec3 bump(vec3 N,float h,float amount){vec3 dp1=dFdx(vP),dp2=dFdy(vP),r1=cross(dp2,N),r2=cross(N,dp1);float det=dot(dp1,r1);return normalize(abs(det)*N-sign(det)*amount*(dFdx(h)*r1+dFdy(h)*r2));}
+float shadow(vec3 N){vec3 p=vShadow.xyz/vShadow.w*.5+.5;if(p.z>1.||p.x<0.||p.y<0.||p.x>1.||p.y>1.)return 1.;float bias=max(.00012,.00065*(1.-dot(N,normalize(vec3(-.48,.83,.30)))));float s=0.;vec2 o[12]=vec2[12](vec2(-.326,-.406),vec2(-.840,-.074),vec2(-.696,.457),vec2(-.203,.621),vec2(.962,-.195),vec2(.473,-.480),vec2(.519,.767),vec2(.185,-.893),vec2(.507,.064),vec2(.896,.412),vec2(-.322,-.933),vec2(-.792,-.598));for(int i=0;i<12;i++){float dep=texture(uShadow,p.xy+o[i]*2.15/uShadowSize).r;s+=step(p.z-bias,dep);}return s/12.;}
+vec3 fresnel(float c,vec3 f0){return f0+(1.-f0)*pow(clamp(1.-c,0.,1.),5.);}
+vec3 brdf(vec3 N,vec3 V,vec3 L,vec3 radiance,vec3 albedo,float rough,float metal){vec3 H=normalize(V+L);float nl=max(dot(N,L),0.),nv=max(dot(N,V),.001),nh=max(dot(N,H),0.),vh=max(dot(V,H),0.);float a=max(rough*rough,.025),a2=a*a,d=nh*nh*(a2-1.)+1.;float D=a2/(PI*d*d);float k=(rough+1.)*(rough+1.)/8.;float G=nv/(nv*(1.-k)+k)*nl/(nl*(1.-k)+k);vec3 F=fresnel(vh,mix(vec3(.04),albedo,metal));vec3 spec=D*G*F/max(4.*nv*nl,.001);return ((1.-F)*(1.-metal)*albedo/PI+spec)*radiance*nl;}
+vec3 environment(vec3 r,float rough){vec3 e=mix(vec3(.22,.235,.22),vec3(.50,.60,.65),smoothstep(-.25,.8,r.y))*.34;float sky=pow(max(dot(r,normalize(vec3(-.8,.3,.55))),0.),6.)*.80;e+=vec3(.51,.63,.74)*sky;if(r.y>.01){vec3 q=vP+r*(6.40-vP.y)/r.y;float lights=exp(-pow((abs(q.z)-4.4)/(.13+rough*.70),2.));float along=0.;for(int i=0;i<3;i++)along+=1.-smoothstep(1.3,1.7+rough,abs(q.x-(-7.+6.*float(i))));e+=vec3(1.,.88,.66)*lights*along*uLampPower*.85;}return e;}
+void main(){if(uPass==1&&vP.y<.02)discard;vec3 N=normalize(vN),V=normalize(uEye-vP);if(dot(N,V)<0.)N=-N;vec3 albedo=pow(vC,vec3(2.2));float rough=uRough,metal=uMetal,ao=1.;vec3 p=vP;float fine=noise(p*155.),coarse=fbm(p*2.6);float h=fine*.08;
+ if(uType==0){float cloud=fbm(vLocal*3.1),micro=noise(vLocal*112.);float pits=smoothstep(.79,.94,noise(vLocal*57.));float dirt=(1.-smoothstep(.90,1.65,vP.y))*(.12+.19*noise(vec3(vLocal.x*9.,vLocal.y*1.4,vLocal.z*9.)));albedo*=.81+cloud*.36;albedo=mix(albedo,vec3(.083,.074,.05),dirt);albedo*=1.-pits*.14;float isTurret=step(1.,abs(vLocal.y-vP.y));float sideFace=smoothstep(.65,.96,abs(vN.z));float seamDist=min(abs(fract((vLocal.x+3.3425)/1.065)-.5)*1.065,min(abs(vLocal.y-1.07),abs(vLocal.y-1.81)));float chipped=(1.-smoothstep(.002,.016,seamDist))*smoothstep(.50,.78,noise(vLocal*183.))*sideFace*(1.-isTurret);albedo=mix(albedo,vec3(.080,.075,.057),chipped*.55);float run=noise(vec3(vLocal.x*29.,vLocal.y*.7,vLocal.z*29.));albedo*=1.-sideFace*smoothstep(.62,.78,run)*.085;h=micro*.26+cloud*.08;rough=clamp(rough+micro*.14-.045,.35,1.);N=bump(N,h,.0030);ao*=mix(.72,1.,smoothstep(.14,.98,vP.y));}
+ else if(uType==1){albedo*=.60+.50*coarse;float dust=1.-smoothstep(.15,1.6,vP.y);albedo=mix(albedo,vec3(.049,.043,.032),dust*.18);N=bump(N,noise(p*104.),.002);}
+ else if(uType==2){float pat=noise(p*24.);albedo*=.76+.35*coarse;albedo=mix(albedo,vec3(.073,.052,.037),smoothstep(.70,.84,coarse)*.28);rough=clamp(rough+pat*.18-.06,.18,.96);N=bump(N,fine,.0007);}
+ else if(uType==3){float gr=fbm(vec3(p.x,0.,p.z)*1.9),patchiness=fbm(vec3(p.x,0.,p.z)*.36);albedo*=.62+.40*gr+.25*patchiness;float speck=smoothstep(.72,.92,fine);albedo*=1.-speck*.20;vec2 tile=abs(fract((p.xz+vec2(.32,.67))/3.35)-.5)*3.35;float joint=1.-smoothstep(.009,.025,min(tile.x,tile.y));albedo*=1.-joint*.42;float wet=smoothstep(.58,.74,fbm(p*.43));rough=mix(.74,.30,wet*.77);float trail=(1.-smoothstep(.24,.51,abs(abs(p.z)-1.52)))*(1.-smoothstep(6.5,15.,abs(p.x)));float trackGrime=trail*(.045+.11*noise(vec3(p.x*13.,0.,p.z*23.)));albedo*=1.-trackGrime;float oil=exp(-length((p.xz-vec2(2.8,.3))*vec2(.76,1.05))*2.)*.30+exp(-length((p.xz-vec2(7.,-3.8))*vec2(.8,1.2))*2.)*.28;albedo*=1.-oil;rough-=oil*.35;float under=1.-smoothstep(.0,.8,length(max(abs(p.xz-vec2(.0,0.))-vec2(3.2,1.1),0.)));ao*=1.-under*.56;float contacts=exp(-pow((abs(p.z)-1.52)/.41,2.))*(1.-smoothstep(3.05,3.92,abs(p.x)));ao*=1.-contacts*.51;float crack=abs(noise(vec3(p.x*.73,0.,p.z*.73))-.51);float crackMask=(1.-smoothstep(.0009,.005,crack))*smoothstep(.56,.67,patchiness);albedo*=1.-crackMask*.31;N=bump(N,gr*.025+fine*.014-joint*.01,.16);}
+ else if(uType==4){albedo*=.74+.39*coarse;float streak=fbm(vec3(p.x*7.,p.y*.19,p.z*7.));albedo*=.80+streak*.26;float damp=(1.-smoothstep(0.,1.5,p.y))*.25;albedo*=1.-damp;vec2 q=abs(vN.z)>.5?p.xy:p.zy;float row=floor(q.y/.38);vec2 g=fract((q+vec2(mod(row,2.)*.38,0.))/vec2(.76,.38));float seam=(1.-smoothstep(0.,.017,min(g.x,g.y)));albedo*=1.-seam*.10;N=bump(N,fine*.22+coarse,.004);}
+ else if(uType==5){albedo*=.85+.22*coarse;float wear=smoothstep(.72,.87,noise(p*44.));albedo=mix(albedo,vec3(.074,.066,.046),wear*.35);N=bump(N,fine,.0015);}
+ else if(uType==6){frag=vec4(pow(vC,vec3(2.2))*8.*uLampPower,1.);outN=vec4(N*.5+.5,1.);return;}
+ else if(uType==7){albedo*=.8+coarse*.4;rough=.14;metal=.73;}
+ else if(uType==8){float grain=noise(vec3(p.x*4.,p.y*60.,p.z*65.));albedo*=.61+grain*.64;N=bump(N,grain,.002);}
+ else if(uType==9){vec4 tex=texture(uAtlas,vUV);if(tex.a<.4)discard;albedo=pow(tex.rgb,vec3(2.2));albedo*=.91+.10*coarse;metal=0.;}
+ else if(uType==10){float abrasion=noise(p*28.);if(abrasion<.27)discard;albedo*=.67+.4*coarse;}
+ vec3 L=normalize(vec3(-.48,.83,.30));float sh=shadow(N);vec3 result=brdf(N,V,L,uKey,albedo,rough,metal)*sh;
+ result+=brdf(N,V,normalize(vec3(.27,.60,-.71)),uFill,albedo,rough,metal);
+ for(int i=0;i<6;i++){vec3 lp=vec3(-7.+6.*float(i/2),6.18,i%2==0?-4.4:4.4),delta=lp-p;float dist=length(delta);vec3 rad=vec3(1.0,.89,.72)*uLampPower*20./(dist*dist+4.);result+=brdf(N,V,delta/dist,rad,albedo,rough,metal)*mix(.55,1.,clamp(N.y*.5+.5,0.,1.));}
+ vec3 hemi=mix(vec3(.20,.18,.14),vec3(.47,.57,.62),N.y*.5+.5)*uAmbient;
+ result+=albedo*hemi*ao*(1.-metal*.78);vec3 f0=mix(vec3(.04),albedo,metal);vec3 F=fresnel(max(dot(N,V),0.),f0);vec3 R=reflect(-V,N);result+=environment(R,rough)*F*mix(.90,.34,rough)*ao;
+ if(uType==3&&uPass==0){vec2 uv=vRef.xy/vRef.w*.5+.5;vec2 ofs=(vec2(noise(p*9.),noise(p.zxy*9.))-.5)*.003;vec3 refl=vec3(0.);float spread=.0018+rough*.004;for(int i=0;i<5;i++){float a=float(i)*2.39996;refl+=texture(uReflection,clamp(uv+ofs+vec2(cos(a),sin(a))*spread*sqrt(float(i)),.001,.999)).rgb;}refl/=5.;float fres=.045+.47*pow(1.-max(dot(N,V),0.),5.);result=mix(result,refl,fres*(1.-rough*.48));}
+ float fog=1.-exp(-length(uEye-p)*.010);result=mix(result,vec3(.16,.20,.21)*uAmbient,fog*.54);frag=vec4(max(result,vec3(0.)),1.);outN=vec4(N*.5+.5,1.);
+}`;
+const depthVertex=`#version 300 es
+precision highp float;layout(location=0) in vec3 aP;uniform mat4 uVP,uModel;void main(){gl_Position=uVP*uModel*vec4(aP,1.);}`;
+const depthFragment=`#version 300 es
+precision highp float;void main(){}`;
+const screenVertex=`#version 300 es
+precision highp float;out vec2 vUV;void main(){vec2 p=vec2((gl_VertexID<<1)&2,gl_VertexID&2);vUV=p;gl_Position=vec4(p*2.-1.,0,1);}`;
+const postFragment=`#version 300 es
+precision highp float;in vec2 vUV;out vec4 frag;
+uniform sampler2D uColor,uDepth,uNormal;uniform vec2 uSize;uniform mat4 uInvVP;uniform float uExposure,uAO,uGrade;
+vec3 world(vec2 uv,float depth){vec4 p=uInvVP*vec4(uv*2.-1.,depth*2.-1.,1.);return p.xyz/p.w;}
+float lum(vec3 c){return dot(c,vec3(.299,.587,.114));}
+vec3 tonemap(vec3 x){return clamp((x*(2.51*x+.03))/(x*(2.43*x+.59)+.14),0.,1.);}
+void main(){vec2 px=1./uSize;vec3 color=texture(uColor,vUV).rgb;float depth=texture(uDepth,vUV).r;float occ=0.;if(depth<.99999&&uAO>.0){vec3 p=world(vUV,depth),N=normalize(texture(uNormal,vUV).xyz*2.-1.);float rad=clamp(48./max(length(p-world(vUV,0.)),2.),3.,24.);for(int i=0;i<12;i++){float a=float(i)*2.399963+1.13;float r=sqrt((float(i)+.5)/12.);vec2 uv=clamp(vUV+vec2(cos(a),sin(a))*rad*r*px,px,1.-px);float d=texture(uDepth,uv).r;vec3 q=world(uv,d)-p;float l=length(q);occ+=max(dot(N,q/max(l,.0001))-.09,0.)*(1.-smoothstep(.025,.52,l));}occ=clamp(occ/12.*2.20,0.,.48);}
+color*=1.-occ*uAO;
+// Local FXAA reduces polygon-edge shimmer without a third-party postprocessing library.
+vec3 cn=texture(uColor,vUV+vec2(0,px.y)).rgb,cs=texture(uColor,vUV-vec2(0,px.y)).rgb,ce=texture(uColor,vUV+vec2(px.x,0)).rgb,cw=texture(uColor,vUV-vec2(px.x,0)).rgb;float lc=lum(color),lmin=min(lc,min(min(lum(cn),lum(cs)),min(lum(ce),lum(cw)))),lmax=max(lc,max(max(lum(cn),lum(cs)),max(lum(ce),lum(cw))));float edge=smoothstep(.07,.5,(lmax-lmin)/max(lmax,.1));color=mix(color,(cn+cs+ce+cw+color*4.)/8.,edge*.42);
+vec3 bloom=vec3(0.);for(int i=0;i<12;i++){float a=float(i)*2.39996,r=2.+float(i)*1.36;vec3 c=texture(uColor,vUV+vec2(cos(a),sin(a))*px*r).rgb;bloom+=max(c-vec3(1.25),0.)/(1.+r*.08);}color+=bloom*.015;
+color*=uExposure;vec3 graded=color*vec3(1.015,1.015,.98);graded=mix(graded,graded*vec3(.96,1.00,1.06),uGrade*.6);color=tonemap(graded);float vign=1.-smoothstep(.32,.92,length((vUV-.5)*vec2(1.,.86)))*.20;color*=vign;color=pow(color,vec3(1./2.2));float grain=fract(sin(dot(gl_FragCoord.xy,vec2(12.9898,78.233)))*43758.5453)-.5;color+=grain/420.;frag=vec4(color,1.);}`;
+function program(v,f){function sh(type,src){let s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s}let p=gl.createProgram(),vs=sh(gl.VERTEX_SHADER,v),fs=sh(gl.FRAGMENT_SHADER,f);gl.attachShader(p,vs);gl.attachShader(p,fs);gl.linkProgram(p);if(!gl.getProgramParameter(p,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(p));gl.deleteShader(vs);gl.deleteShader(fs);return p}
+const mainProgram=program(vertex,fragment),shadowProgram=program(depthVertex,depthFragment),postProgram=program(screenVertex,postFragment);
+function uniforms(p,names){return Object.fromEntries(names.split(' ').map(n=>[n,gl.getUniformLocation(p,n)]))}
+const U=uniforms(mainProgram,'uVP uModel uLightVP uRefVP uEye uKey uFill uRough uMetal uAmbient uShadowSize uLampPower uType uPass uShadow uReflection uAtlas'),D=uniforms(shadowProgram,'uVP uModel'),P=uniforms(postProgram,'uColor uDepth uNormal uSize uInvVP uExposure uAO uGrade');
+let drawBatches=[];for(let b of batches.values()){let a=new Float32Array(b.a),vao=gl.createVertexArray();gl.bindVertexArray(vao);let buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,a,gl.STATIC_DRAW);let sizes=[3,3,3,2],offset=0;for(let i=0;i<4;i++){gl.enableVertexAttribArray(i);gl.vertexAttribPointer(i,sizes[i],gl.FLOAT,false,44,offset*4);offset+=sizes[i]}drawBatches.push({mat:b.mat,group:b.group,vao,count:a.length/11});b.a=null}batches.clear();gl.bindVertexArray(null);
+const floatColor=!!gl.getExtension('EXT_color_buffer_float');gl.getExtension('OES_texture_float_linear');
+function texture(w,h,kind){let t=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,t);if(kind==='depth')gl.texImage2D(gl.TEXTURE_2D,0,gl.DEPTH_COMPONENT24,w,h,0,gl.DEPTH_COMPONENT,gl.UNSIGNED_INT,null);else if(kind==='hdr'&&floatColor)gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA16F,w,h,0,gl.RGBA,gl.HALF_FLOAT,null);else gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA8,w,h,0,gl.RGBA,gl.UNSIGNED_BYTE,null);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,kind==='depth'?gl.NEAREST:gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,kind==='depth'?gl.NEAREST:gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);return t}
+function target(w,h,normal=false){let f=gl.createFramebuffer();gl.bindFramebuffer(gl.FRAMEBUFFER,f);let color=texture(w,h,'hdr'),depth=texture(w,h,'depth');gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,color,0);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.DEPTH_ATTACHMENT,gl.TEXTURE_2D,depth,0);let n=null;if(normal){n=texture(w,h,'color');gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT1,gl.TEXTURE_2D,n,0);gl.drawBuffers([gl.COLOR_ATTACHMENT0,gl.COLOR_ATTACHMENT1])}else gl.drawBuffers([gl.COLOR_ATTACHMENT0]);if(gl.checkFramebufferStatus(gl.FRAMEBUFFER)!==gl.FRAMEBUFFER_COMPLETE)throw Error('The graphics device could not create a render surface.');return {f,color,depth,n,w,h}}
+function removeTarget(t){if(!t)return;gl.deleteFramebuffer(t.f);for(let x of [t.color,t.depth,t.n])if(x)gl.deleteTexture(x)}
+const atlasTex=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,atlasTex);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,atlas);gl.generateMipmap(gl.TEXTURE_2D);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR_MIPMAP_LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+let shadowSize=2048,shadowF=gl.createFramebuffer(),shadowTex=texture(shadowSize,shadowSize,'depth');gl.bindFramebuffer(gl.FRAMEBUFFER,shadowF);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.DEPTH_ATTACHMENT,gl.TEXTURE_2D,shadowTex,0);gl.drawBuffers([gl.NONE]);gl.readBuffer(gl.NONE);if(gl.checkFramebufferStatus(gl.FRAMEBUFFER)!==gl.FRAMEBUFFER_COMPLETE)throw Error('Shadow render surface is unavailable.');
+const lightVP=mul(ortho(-13,13,-13,13,.1,42),look([-10.5,18.15,6.56],[0,0,0]));
+let mainTarget,refTarget,W,H,dirty=true,shadowDirty=true,quality='high',turretAngle=0,exposure=1,lighting='workshop',autoRotate=false,last=0,frameCount=0;
+const identity=I();let turretModel=trans([-.40,1.91,0]);
+const presets={hero:{theta:-.90,phi:1.26,r:13.70,target:[-.90,1.28,0]},front:{theta:-PI/2,phi:1.37,r:12.8,target:[-.9,1.36,0]},rear:{theta:.93,phi:1.23,r:12.5,target:[.0,1.34,0]},detail:{theta:-.67,phi:1.24,r:7.1,target:[-.05,1.80,.10]}};
+const fitFactor=()=>Math.max(1,.93/(innerWidth/innerHeight));let initial={...presets.hero};initial.r*=fitFactor();
+let current={theta:initial.theta,phi:initial.phi,r:initial.r,target:initial.target.slice()},dest={theta:initial.theta,phi:initial.phi,r:initial.r,target:initial.target.slice()};
+function resize(){let q=quality==='ultra'?2:quality==='high'?1.35:1;let dpr=Math.min(devicePixelRatio||1,q);let w=Math.max(1,Math.round(innerWidth*dpr)),h=Math.max(1,Math.round(innerHeight*dpr));if(w===W&&h===H)return;W=w;H=h;canvas.width=w;canvas.height=h;removeTarget(mainTarget);removeTarget(refTarget);mainTarget=target(w,h,true);let rf=quality==='balanced'?.40:.64;refTarget=target(Math.max(64,Math.floor(w*rf)),Math.max(64,Math.floor(h*rf)));dirty=true}
+resize();addEventListener('resize',resize);
+function bindTex(unit,t){gl.activeTexture(gl.TEXTURE0+unit);gl.bindTexture(gl.TEXTURE_2D,t)}
+function shouldDraw(b,eye,pass){if(b.group==='frontFrame'&&eye[2]>5.5&&pass!=='shadow')return false;if(b.group==='wallBack'&&eye[2]<-8.45)return false;if(b.group==='wallRight'&&eye[0]>9.3)return false;if(b.group==='ceiling'&&(eye[1]>6.8||pass==='shadow'))return false;if(pass==='shadow'&&(b.mat==='label'||b.mat==='stripe'||b.mat==='floor'||b.mat==='lamp'))return false;if(pass==='reflection'&&(b.mat==='floor'||b.mat==='stripe'))return false;return true}
+function renderShadow(){gl.bindFramebuffer(gl.FRAMEBUFFER,shadowF);gl.viewport(0,0,shadowSize,shadowSize);gl.enable(gl.DEPTH_TEST);gl.depthFunc(gl.LEQUAL);gl.disable(gl.CULL_FACE);gl.colorMask(false,false,false,false);gl.clear(gl.DEPTH_BUFFER_BIT);gl.useProgram(shadowProgram);gl.uniformMatrix4fv(D.uVP,false,lightVP);gl.enable(gl.POLYGON_OFFSET_FILL);gl.polygonOffset(1.3,2.0);for(let b of drawBatches){if(!shouldDraw(b,[0,4,0],'shadow'))continue;gl.uniformMatrix4fv(D.uModel,false,b.group==='turret'?turretModel:identity);gl.bindVertexArray(b.vao);gl.drawArrays(gl.TRIANGLES,0,b.count)}gl.disable(gl.POLYGON_OFFSET_FILL);gl.colorMask(true,true,true,true);shadowDirty=false}
+const lights={workshop:{key:[3.65,3.38,2.98],fill:[.62,.82,1.02],ambient:.64,lamp:1.,grade:0},cinematic:{key:[.74,.94,1.21],fill:[.10,.20,.31],ambient:.24,lamp:1.4,grade:1},inspection:{key:[4.0,3.9,3.67],fill:[1.15,1.34,1.42],ambient:.92,lamp:1.4,grade:0}};
+function scenePass(t,VP,eye,refVP,reflection){let l=lights[lighting];gl.bindFramebuffer(gl.FRAMEBUFFER,t.f);gl.viewport(0,0,t.w,t.h);gl.enable(gl.DEPTH_TEST);gl.depthFunc(gl.LEQUAL);gl.disable(gl.BLEND);gl.disable(gl.CULL_FACE);gl.clearColor(.13*l.ambient,.18*l.ambient,.20*l.ambient,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.useProgram(mainProgram);gl.uniformMatrix4fv(U.uVP,false,VP);gl.uniformMatrix4fv(U.uLightVP,false,lightVP);gl.uniformMatrix4fv(U.uRefVP,false,refVP);gl.uniform3fv(U.uEye,eye);gl.uniform3fv(U.uKey,l.key);gl.uniform3fv(U.uFill,l.fill);gl.uniform1f(U.uAmbient,l.ambient);gl.uniform1f(U.uLampPower,l.lamp);gl.uniform1f(U.uShadowSize,shadowSize);gl.uniform1i(U.uPass,reflection?1:0);bindTex(0,shadowTex);gl.uniform1i(U.uShadow,0);bindTex(1,reflection?atlasTex:refTarget.color);gl.uniform1i(U.uReflection,1);bindTex(2,atlasTex);gl.uniform1i(U.uAtlas,2);
+for(let b of drawBatches){if(!shouldDraw(b,reflection?[eye[0],-eye[1],eye[2]]:eye,reflection?'reflection':'main'))continue;let m=mats[b.mat];gl.uniformMatrix4fv(U.uModel,false,b.group==='turret'?turretModel:identity);gl.uniform1i(U.uType,m.type);gl.uniform1f(U.uRough,m.rough);gl.uniform1f(U.uMetal,m.metal);gl.bindVertexArray(b.vao);gl.drawArrays(gl.TRIANGLES,0,b.count)}}
+function render(){const eye=add(current.target,[current.r*Math.sin(current.phi)*Math.sin(current.theta),current.r*Math.cos(current.phi),current.r*Math.sin(current.phi)*Math.cos(current.theta)]);eye[1]=Math.max(.28,eye[1]);let projection=perspective(43*PI/180,W/H,.08,85),VP=mul(projection,look(eye,current.target));let reflected=[eye[0],-eye[1],eye[2]],rt=[current.target[0],-current.target[1],current.target[2]],refVP=mul(projection,look(reflected,rt,[0,-1,0]));if(shadowDirty)renderShadow();scenePass(refTarget,refVP,reflected,refVP,true);scenePass(mainTarget,VP,eye,refVP,false);gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.viewport(0,0,W,H);gl.disable(gl.DEPTH_TEST);gl.useProgram(postProgram);gl.bindVertexArray(null);bindTex(0,mainTarget.color);bindTex(1,mainTarget.depth);bindTex(2,mainTarget.n);gl.uniform1i(P.uColor,0);gl.uniform1i(P.uDepth,1);gl.uniform1i(P.uNormal,2);gl.uniform2f(P.uSize,W,H);gl.uniformMatrix4fv(P.uInvVP,false,inverse(VP));gl.uniform1f(P.uExposure,exposure);gl.uniform1f(P.uAO,quality==='balanced'?.55:1.);gl.uniform1f(P.uGrade,lights[lighting].grade);gl.drawArrays(gl.TRIANGLES,0,3);frameCount++;}
+await progress(89,'Finishing the first render…');
+render();
+// Camera interaction uses damped spherical orbit, touch pinch and two-finger pan.
+function activeView(name){document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===name))}
+function setView(name){let p=presets[name];dest={theta:p.theta,phi:p.phi,r:p.r*fitFactor(),target:p.target.slice()};let d=dest.theta-current.theta;while(d>PI){dest.theta-=TAU;d-=TAU}while(d<-PI){dest.theta+=TAU;d+=TAU}activeView(name);dirty=true}
+document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
+let pointers=new Map(),gesture=null;
+function stopOrbit(){autoRotate=false;$('rotate').classList.remove('active');$('rotate').setAttribute('aria-pressed','false')}
+canvas.addEventListener('contextmenu',e=>e.preventDefault());canvas.addEventListener('pointerdown',e=>{canvas.setPointerCapture(e.pointerId);pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});gesture=null;stopOrbit()});
+function pan(dx,dy){let amount=current.r*.0015;let right=[Math.cos(current.theta),0,-Math.sin(current.theta)],up=[-Math.cos(current.phi)*Math.sin(current.theta),Math.sin(current.phi),-Math.cos(current.phi)*Math.cos(current.theta)];dest.target=add(dest.target,add(scale(right,-dx*amount),scale(up,dy*amount)));dest.target[0]=clamp(dest.target[0],-7,7);dest.target[1]=clamp(dest.target[1],.15,4);dest.target[2]=clamp(dest.target[2],-5,5)}
+canvas.addEventListener('pointermove',e=>{if(!pointers.has(e.pointerId))return;let old=pointers.get(e.pointerId),dx=e.clientX-old.x,dy=e.clientY-old.y;pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pointers.size>=2){let a=[...pointers.values()],dist=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y),cx=(a[0].x+a[1].x)/2,cy=(a[0].y+a[1].y)/2;if(gesture){dest.r=clamp(dest.r*gesture.dist/Math.max(dist,1),4.3,40);pan(cx-gesture.cx,cy-gesture.cy)}gesture={dist,cx,cy}}else if(e.shiftKey||e.buttons===2||e.buttons===4)pan(dx,dy);else{dest.theta-=dx*.006;dest.phi=clamp(dest.phi-dy*.005,.26,1.52)}dirty=true;activeView('')});
+function pointerUp(e){pointers.delete(e.pointerId);gesture=null}canvas.addEventListener('pointerup',pointerUp);canvas.addEventListener('pointercancel',pointerUp);canvas.addEventListener('lostpointercapture',pointerUp);
+canvas.addEventListener('wheel',e=>{e.preventDefault();dest.r=clamp(dest.r*Math.exp(clamp(e.deltaY,-140,140)*.0013),4.3,40);dirty=true;activeView('')},{passive:false});
+let toastTimer;function toast(t){$('toast').textContent=t;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),2200)}
+$('settings').onclick=()=>{let open=$('panel').classList.toggle('open');$('settings').classList.toggle('active',open);$('settings').setAttribute('aria-expanded',String(open))};
+$('rotate').onclick=()=>{autoRotate=!autoRotate;$('rotate').classList.toggle('active',autoRotate);$('rotate').setAttribute('aria-pressed',String(autoRotate));dirty=true};
+async function full(){try{if(document.fullscreenElement)await document.exitFullscreen();else if(document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();else toast('Use your browser’s fullscreen command.')}catch(e){toast('Use your browser’s fullscreen command.')}}$('fullscreen').onclick=full;
+$('turret').oninput=e=>{turretAngle=Number(e.target.value);$('turret-value').textContent=turretAngle+'°';turretModel=trans([-.40,1.91,0],turretAngle*PI/180);dirty=true;shadowDirty=true};
+$('exposure').oninput=e=>{exposure=Number(e.target.value);$('exposure-value').textContent=exposure.toFixed(2);dirty=true};$('light').onchange=e=>{lighting=e.target.value;dirty=true};$('quality').onchange=e=>{quality=e.target.value;resize();dirty=true};
+function toggleUI(){document.body.classList.toggle('hidden-ui')}$('restore').onclick=toggleUI;
+addEventListener('keydown',e=>{if(/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName))return;if(e.key===' '){e.preventDefault();$('rotate').click()}else if(e.key.toLowerCase()==='r'){stopOrbit();setView('hero');$('turret').value=0;$('turret').dispatchEvent(new Event('input'));toast('View reset')}else if(e.key.toLowerCase()==='h')toggleUI();else if(e.key.toLowerCase()==='f')full();else if(e.key==='Escape'){$('panel').classList.remove('open');$('settings').classList.remove('active');$('settings').setAttribute('aria-expanded','false')}else if(e.key==='ArrowLeft'||e.key==='ArrowRight'){dest.theta+=(e.key==='ArrowLeft'?-.10:.10);dirty=true}else if(e.key==='ArrowUp'||e.key==='ArrowDown'){e.preventDefault();dest.phi=clamp(dest.phi+(e.key==='ArrowUp'?-.06:.06),.26,1.52);dirty=true}else if(e.key==='+'||e.key==='='){dest.r=Math.max(4.3,dest.r*.9);dirty=true}else if(e.key==='-'){dest.r=Math.min(40,dest.r*1.1);dirty=true}});
+canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();toast('Graphics context paused. Reload this file to resume.')});
+let visible=true;document.addEventListener('visibilitychange',()=>{visible=!document.hidden;if(visible){dirty=true;last=0}});
+function animate(now){requestAnimationFrame(animate);if(!visible)return;let dt=last?Math.min((now-last)/1000,.06):.016;last=now;if(autoRotate&&pointers.size===0){dest.theta+=dt*.085;dirty=true;activeView('')}let delta=Math.abs(dest.theta-current.theta)+Math.abs(dest.phi-current.phi)+Math.abs(dest.r-current.r)+len(sub(dest.target,current.target));if(delta>.0002){let f=1-Math.exp(-dt*8);current.theta=mix(current.theta,dest.theta,f);current.phi=mix(current.phi,dest.phi,f);current.r=mix(current.r,dest.r,f);current.target=current.target.map((v,i)=>mix(v,dest.target[i],f));dirty=true}if(dirty){render();dirty=false}}
+await progress(100,'Ready to explore.');$('loading').classList.add('out');setTimeout(()=>$('loading').style.display='none',750);requestAnimationFrame(animate);
+// Read-only diagnostics aid offline compatibility checks without network activity.
+window.abramsScene={get ready(){return true},get stats(){return {triangles:drawBatches.reduce((n,b)=>n+b.count/3,0),drawBatches:drawBatches.length,width:W,height:H,frames:frameCount,webgl2:true,hdr:floatColor,turretAngle,lighting,quality}},setView};
+}catch(e){fail(e)}
+})();
+</script>
+</body>
+</html>
